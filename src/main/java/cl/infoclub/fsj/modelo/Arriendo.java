@@ -1,6 +1,11 @@
 package cl.infoclub.fsj.modelo;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
+import javax.persistence.*;
+
+import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import javax.persistence.*;
 
@@ -15,7 +20,10 @@ public class Arriendo {
 	private Integer id;
 	private String inicio;
 	private Integer duracion;
-	@OneToOne(cascade = CascadeType.ALL)
+	@ManyToOne
 	@JoinColumn(name = "pelicula_id", referencedColumnName = "id")
 	private Pelicula pelicula;
+	@ManyToOne
+	@JoinColumn(name = "cliente_id", referencedColumnName = "id")
+	private Cliente cliente;
 }

@@ -1,9 +1,10 @@
 package cl.infoclub.fsj;
 
 import cl.infoclub.fsj.modelo.Arriendo;
+import cl.infoclub.fsj.modelo.Cliente;
 import cl.infoclub.fsj.modelo.Pelicula;
 import cl.infoclub.fsj.repositorio.ArriendoRepository;
-import cl.infoclub.fsj.repositorio.PeliculaRepository;
+import cl.infoclub.fsj.repositorio.ClienteRepository;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,20 +15,33 @@ class BlockbusterApplicationTests {
 	@Autowired
 	private ArriendoRepository arriendoRepository;
 	@Autowired
-	PeliculaRepository peliculaRepository;
+	private ClienteRepository clienteRepository;
+
 	@Test
-	private void validaRepositoriosCreandoPeliculaYArriendo() {
-		
-	//nueva pelicula
-	Pelicula spaceOdyssey = new Pelicula(1,"2001: A Space Odyssey","After discovering a mysterious artifact buried beneath the Lunar surface, mankind sets off on a quest to find its origins with help from intelligent supercomputer H.A.L. 9000. ",149);
-	//	Pelicula spaceOdyssey = new Pelicula();
-	//nuevo arriendo
-	Arriendo arriendo = new Arriendo(null, "11/20/2019", 7,spaceOdyssey);
-	//guardar arriendo
-	arriendoRepository.save(arriendo);
-	//buscar arriendo
-	Arriendo arriendoOd = arriendoRepository.findById(1).get();
-	//valida que exista
-	Assertions.assertNotNull(arriendoOd);
+	public void validandoDatos() {
+// Instanciamos las tres clases.
+		Pelicula pelicula = new Pelicula();
+		Cliente cliente = new Cliente();
+		Arriendo arriendo = new Arriendo();
+// Guardamos al cliente en base de datos para generar su ID.
+		cliente.setNombre("Juan");
+		cliente = clienteRepository.save(cliente);
+// Asignamos un estado a la pelicula
+		pelicula.setDescripcion("Buena pelicula");
+		pelicula.setDuracion(160);
+		pelicula.setTitulo("El cuadro");
+// Asignamos un estado al arriendo
+		arriendo.setDuracion(10);
+		arriendo.setInicio("11/12/2019");
+		arriendo.setPelicula(pelicula);
+//Le asignamos al cliente previamente creado.
+		arriendo.setCliente(cliente);
+//Guardamos la pelicula y el arriendo
+		arriendo = arriendoRepository.save(arriendo);
+//Guardamos al cliente en base de datos
+		cliente = clienteRepository.save(cliente);
+//afirmaciones
+		Assertions.assertNotNull(arriendoRepository.findAll());
+		Assertions.assertNotNull(clienteRepository.findAll());
 	}
 }
