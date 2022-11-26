@@ -16,8 +16,8 @@ import java.util.List;
 
 @Service
 public class PeliculaServiceImpl implements PeliculaService {
-	private static final Logger log = LoggerFactory.getLogger(PeliculaServiceImpl.class);
-	@Autowired
+	private static final Logger log = LoggerFactory.getLogger(PeliculaServiceImpl.class); 									//Obtiene el logger de la clase PeliculaServicio que es el puente de comunicacion entre el programa y el usuario														
+	@Autowired																												//Inyeccion de los servicios del proyecto					
 	private PeliculaRepository dao;
 	private PeliculaDTO respuesta;
 

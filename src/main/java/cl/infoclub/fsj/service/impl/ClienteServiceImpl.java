@@ -16,8 +16,8 @@ import java.util.List;
 
 @Service
 public class ClienteServiceImpl implements ClienteService {
-	private static final Logger log = LoggerFactory.getLogger(ClienteServiceImpl.class);
-	@Autowired
+	private static final Logger log = LoggerFactory.getLogger(ClienteServiceImpl.class);											//Obtiene el logger de la clase ClienteServicio que es el puente de comunicacion entre el programa y el usuario		
+	@Autowired																														//Inyeccion de los servicios del proyecto
 	private ClienteRepository dao;
 	private ClienteDTO respuesta;
 

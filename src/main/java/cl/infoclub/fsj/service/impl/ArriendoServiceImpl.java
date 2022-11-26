@@ -16,8 +16,8 @@ import java.util.List;
 
 @Service
 public class ArriendoServiceImpl implements ArriendoService {
-	private static final Logger log = LoggerFactory.getLogger(ArriendoServiceImpl.class);
-	@Autowired
+	private static final Logger log = LoggerFactory.getLogger(ArriendoServiceImpl.class);    								//Obtiene el logger de la clase ArriendoServicio que es el puente de comunicacion entre el programa y el usuario
+	@Autowired																												//Inyeccion de los servicios del proyecto																												
 	private ArriendoRepository dao;
 	private ArriendoDTO respuesta;
 
@@ -33,7 +33,7 @@ public class ArriendoServiceImpl implements ArriendoService {
 			log.trace("Arriendo Service: Error en findAll", e);
 		}
 		return respuesta;
-	}
+	} 
 
 	@Override
 	@Transactional
